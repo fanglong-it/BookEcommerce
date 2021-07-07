@@ -55,7 +55,7 @@ public class CategoryDAO implements Serializable {
         return list;
     }
     
-    public String getCategoryName(String CategoryId) throws SQLException, NamingException {
+    public String getCategoryName(String categoryId) throws SQLException, NamingException {
         String result = "";
         Connection con = null;
         PreparedStatement pst = null;
@@ -67,7 +67,7 @@ public class CategoryDAO implements Serializable {
                         + "from tblCategory \n"
                         + "Where categoryId like ?";
                 pst = con.prepareStatement(sql);
-                pst.setString(1, CategoryId);
+                pst.setString(1, categoryId);
                 rs = pst.executeQuery();
                 if (rs.next()) {
                     result = rs.getString("CategoryName");

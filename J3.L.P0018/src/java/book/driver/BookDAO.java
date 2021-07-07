@@ -62,7 +62,7 @@ public class BookDAO implements Serializable {
         return list;
     }
 
-    public List<BookDTO> getBookByName(String Name) throws SQLException, NamingException {
+    public List<BookDTO> getBookByName(String name) throws SQLException, NamingException {
         List<BookDTO> list = new ArrayList<>();
         Connection con = null;
         PreparedStatement pst = null;
@@ -74,7 +74,7 @@ public class BookDAO implements Serializable {
                         + "from tblBook \n"
                         + "WHERE Title like ? and Status = ? and BookQuantity > 0";
                 pst = con.prepareStatement(sql);
-                pst.setString(1, "%" + Name + "%");
+                pst.setString(1, "%" + name + "%");
                 pst.setString(2, "Active");
                 rs = pst.executeQuery();
                 while (rs.next()) {
@@ -105,7 +105,7 @@ public class BookDAO implements Serializable {
         return list;
     }
 
-    public List<BookDTO> getBookByPrice(Float Price) throws SQLException, NamingException {
+    public List<BookDTO> getBookByPrice(Float price) throws SQLException, NamingException {
         List<BookDTO> list = new ArrayList<>();
         Connection con = null;
         PreparedStatement pst = null;
@@ -117,19 +117,19 @@ public class BookDAO implements Serializable {
                         + "from tblBook \n"
                         + "Where Price Between 0 and ? and Status = ? and BookQuantity > 0";
                 pst = con.prepareStatement(sql);
-                pst.setFloat(1, Price);
+                pst.setFloat(1, price);
                 pst.setString(2, "Active");
                 rs = pst.executeQuery();
                 while (rs.next()) {
                     int bookId = rs.getInt("BookId");
                     String title = rs.getString("Title");
-                    Float price = rs.getFloat("Price");
+                    Float bookPrice = rs.getFloat("Price");
                     String author = rs.getString("Author");
                     String category = rs.getString("CategoryId");
                     String importDate = rs.getString("ImportDate");
                     String status = rs.getString("Status");
                     String photoCode = rs.getString("PhotoCode");
-                    BookDTO book = new BookDTO(bookId, title, price, author, category, importDate, status, photoCode);
+                    BookDTO book = new BookDTO(bookId, title, bookPrice, author, category, importDate, status, photoCode);
                     list.add(book);
                 }
             }
@@ -191,7 +191,7 @@ public class BookDAO implements Serializable {
         return list;
     }
 
-    public BookDTO getBook(String BookId) throws NamingException, SQLException {
+    public BookDTO getBook(String bookId) throws NamingException, SQLException {
         CategoryDAO cateDao = new CategoryDAO();
         BookDTO book = null;
         Connection cn = null;
@@ -204,10 +204,10 @@ public class BookDAO implements Serializable {
                         + "from tblBook \n"
                         + "Where BookId = ? ";
                 pst = cn.prepareStatement(sql);
-                pst.setString(1, BookId);
+                pst.setString(1, bookId);
                 rs = pst.executeQuery();
                 if(rs.next()){
-                    int bookId = rs.getInt("BookId");
+                    int bookID = rs.getInt("BookId");
                     String title = rs.getString("Title");
                     Float price = rs.getFloat("Price");
                     String author = rs.getString("Author");
@@ -217,7 +217,7 @@ public class BookDAO implements Serializable {
                     String photoCode = rs.getString("PhotoCode");
                     String discription = rs.getString("Discription");
                     int bookQuantity = rs.getInt("BookQuantity");
-                    book = new BookDTO(bookId, title, price, author, categoryId, importDate, status, photoCode, discription, bookQuantity);
+                    book = new BookDTO(bookID, title, price, author, categoryId, importDate, status, photoCode, discription, bookQuantity);
                 }
             }
         } finally {

@@ -82,24 +82,24 @@
                         <c:if test="${sessionScope.USER.role eq 'AD'}">
                             <c:redirect url="indexForAdmin.jsp"/>
                         </c:if>
-                        
+
                         <form class="d-flex" action="DispatchServlet">
                             <button class="btn" type="submit" name="btnAction" value="Profile" >
-                            Welcome,    ${sessionScope.USER.name}
+                                Welcome,    ${sessionScope.USER.name}
                             </button>
-                            
+
                             <button class="btn btn-outline-dark" style="background: tomato" type="submit" name="btnAction" value="Logout">
                                 Logout
                             </button>
-                            
-                            
+
+
                             <button class="btn btn-outline-dark" type="submit">
                                 <i class="bi-cart-fill me-1"></i>
                                 Cart
                                 <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                             </button>
                         </form>
-                        
+
                     </c:if>
                 </div>
             </div>
@@ -123,7 +123,7 @@
 
                 <%-- %>Start of product <--%>
                 <c:if test="${not empty sessionScope.BOOKDETAIL}">
-                    
+
                     <div class="container">
                         <hr>
                         <div class="card">
@@ -166,23 +166,26 @@
                                         </dl>  <!-- item-property-hor .// -->
 
                                         <hr>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <dl class="param param-inline">
-                                                    <dt>Quantity: </dt>
-                                                    <dd>
-                                                        <select name="Quantity" class="form-control form-control-sm" style="width:70px;">
-                                                            <option> 1 </option>
-                                                            <option> 2 </option>
-                                                            <option> 3 </option>
-                                                        </select>
-                                                    </dd>
-                                                </dl>  <!-- item-property .// -->
-                                            </div> <!-- col.// -->
+                                        <form action="DispatchServlet">
+                                            <div class="row">
+                                                <div class="col-sm-5">
+                                                    <dl class="param param-inline">
+                                                        <dt>Quantity: </dt>
+                                                        <dd>
+                                                            <select name="Quantity" class="form-control form-control-sm" style="width:70px;">
+                                                                <option value="1" selected=""> 1 </option>
+                                                                <option value="2"> 2 </option>
+                                                                <option value="3"> 3 </option>
+                                                            </select>
+                                                        </dd>
+                                                    </dl>  <!-- item-property .// -->
+                                                </div> <!-- col.// -->
+                                            </div> <!-- row.// -->
+                                            <hr>
+                                            <input type="hidden" name="BookId" value="${sessionScope.BOOKDETAIL.bookID}" />
+                                            <button type="submit" name="btnAction" value="AddToCart" class="btn btn-lg btn-outline-dark text-uppercase">Add to cart</button>
+                                        </form>
 
-                                        </div> <!-- row.// -->
-                                        <hr>
-                                        <a href="" class="btn btn-lg btn-outline-dark text-uppercase"> <i class="fas fa-shopping-cart"></i> Add to cart </a>
                                     </article> <!-- card-body.// -->
                                 </aside> <!-- col.// -->
                             </div> <!-- row.// -->

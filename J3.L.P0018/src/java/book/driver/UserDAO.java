@@ -19,7 +19,7 @@ import javax.naming.NamingException;
  */
 public class UserDAO implements Serializable {
 
-    public UserDTO checkLogin(String Username, String Password) throws NamingException, SQLException {
+    public UserDTO checkLogin(String username, String password) throws NamingException, SQLException {
         UserDTO user = null;
         Connection con = null;
         PreparedStatement pst = null;
@@ -31,16 +31,16 @@ public class UserDAO implements Serializable {
                         + "from tblUser \n"
                         + "where Username = ? and Password = ? ";
                 pst = con.prepareStatement(sql);
-                pst.setString(1, Username);
-                pst.setString(2, Password);
+                pst.setString(1, username);
+                pst.setString(2, password);
                 rs = pst.executeQuery();
                 if (rs.next()) {
-                    String username = rs.getString("Username");
-                    String password = "*******";
+                    String userName = rs.getString("Username");
+                    String passWord = "*******";
                     String name = rs.getString("Name");
                     String role = rs.getString("roleId");
                     String status = rs.getString("Status");
-                    user = new UserDTO(username, password, name, "", role, status);
+                    user = new UserDTO(username, passWord, name, "", role, status);
                 }
             }
 
@@ -58,7 +58,7 @@ public class UserDAO implements Serializable {
         return user;
     }
 
-    public boolean checkUserExist(String Username) throws NamingException, SQLException {
+    public boolean checkUserExist(String username) throws NamingException, SQLException {
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
@@ -69,7 +69,7 @@ public class UserDAO implements Serializable {
                         + "from tblUser \n"
                         + "where Username = ?";
                 pst = con.prepareStatement(sql);
-                pst.setString(1, Username);
+                pst.setString(1, username);
                 rs = pst.executeQuery();
                 if (rs.next()) {
                     return true;

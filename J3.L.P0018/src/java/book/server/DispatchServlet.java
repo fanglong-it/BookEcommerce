@@ -20,15 +20,16 @@ import javax.servlet.http.HttpServletResponse;
 public class DispatchServlet extends HttpServlet {
 
     private static final String HOME_PAGE = "index.jsp";
-    private static final String LOGIN_PAGE ="login.jsp";
+    private static final String LOGIN_PAGE = "login.jsp";
     private static final String REGISTER_PAGE = "register.jsp";
     private static final String REGISTER_SERVLET = "RegisterServlet";
     private static final String LOGOUT_SERVLET = "LogoutServlet";
-    private static final String LOGIN_SERVLET ="LoginServlet";
+    private static final String LOGIN_SERVLET = "LoginServlet";
     private static final String SEARCH_SERVLET = "SearchServlet";
     private static final String LOAD_SERVLET = "LoadServlet";
     private static final String VIEWDETAIL_SERVLET = "ViewDetailServlet";
-    
+    private static final String VIEWCART_PAGE = "viewCart.jsp";
+    private static final String ADDTOCART_SERVLET = "AddToCartServlet";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,6 +45,8 @@ public class DispatchServlet extends HttpServlet {
         String url = HOME_PAGE;
         try {
             String button = request.getParameter("btnAction");
+            
+            
             if (button == null) {
                 url = LOAD_SERVLET;
             } else if (button.equals("")) {
@@ -52,15 +55,19 @@ public class DispatchServlet extends HttpServlet {
                 url = SEARCH_SERVLET;
             } else if (button.equals("ViewDetail")) {
                 url = VIEWDETAIL_SERVLET;
-            }else if(button.equals("LoginPage")){
+            } else if (button.equals("LoginPage")) {
                 url = LOGIN_PAGE;
-            }else if(button.equals("Login")){
+            } else if (button.equals("Login")) {
                 url = LOGIN_SERVLET;
-            }else if(button.equals("RegisterPage")){
+            } else if (button.equals("RegisterPage")) {
                 url = REGISTER_PAGE;
-            }else if(button.equals("RegisterServlet")){
+            } else if (button.equals("RegisterServlet")) {
                 url = REGISTER_SERVLET;
-            }else if(button.equals("Logout")){
+            } else if (button.equals("ViewCartPage")) {
+                url = VIEWCART_PAGE;
+            } else if (button.equals("AddToCart")) {
+                url = ADDTOCART_SERVLET;
+            } else if (button.equals("Logout")) {
                 url = LOGOUT_SERVLET;
             }
 

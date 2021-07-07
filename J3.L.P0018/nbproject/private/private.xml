@@ -4,18 +4,24 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/BookDTO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/LoadServlet.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/UserDTO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/viewCart.jsp</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/UserDAO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/register.jsp</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/CategoryDAO.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/login.jsp</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/viewProductDetail.jsp</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/BookDAO.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/viewProductDetailAdmin.jsp</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/util/BookUtil.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/indexForAdmin.jsp</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/LogoutServlet.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/DispatchServlet.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/index.jsp</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/AddToCartServlet.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/ViewDetailServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/RegisterServlet.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/LoginServlet.java</file>
         </group>
     </open-files>

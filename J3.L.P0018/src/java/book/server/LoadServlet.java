@@ -10,7 +10,7 @@ import book.driver.BookDTO;
 import book.driver.CategoryDAO;
 import book.driver.CategoryDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -40,7 +40,7 @@ public class LoadServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url =HOME_PAGE;
+        String url = HOME_PAGE;
         try {
             CategoryDAO cateDao = new CategoryDAO();
             BookDAO bookDao = new BookDAO();
@@ -49,6 +49,14 @@ public class LoadServlet extends HttpServlet {
             session.setAttribute("CATE", listCate);
             List<BookDTO> listBook = bookDao.getAllBook();
             session.setAttribute("LISTBOOK", listBook);
+            List<BookDTO> bookCart = null;
+            if (session.getAttribute("BOOKCART") == null) {
+                bookCart = new ArrayList<>();
+            } else {
+                bookCart = (List<BookDTO>) session.getAttribute("BOOKCART");
+            }
+           session.setAttribute("BOOKCART", bookCart);
+
 
         } catch (Exception e) {
             log("Error at load Servlet: " + e.toString());
