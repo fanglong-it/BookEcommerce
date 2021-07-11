@@ -30,6 +30,21 @@ public class DispatchServlet extends HttpServlet {
     private static final String VIEWDETAIL_SERVLET = "ViewDetailServlet";
     private static final String VIEWCART_PAGE = "viewCart.jsp";
     private static final String ADDTOCART_SERVLET = "AddToCartServlet";
+    private static final String CHECKDISCOUNT_SERVLET = "CheckDiscountCodeServlet";
+    private static final String UPDATEBOOKINCART_SERVLET = "UpdateBookInCartServlet";
+    private static final String DELETEBOOKINCART_SERVLET = "DeleteBookInCartServlet";
+    private static final String UPDATEBOOKADMIN_SERVLET = "UpdateBookAdminServlet";
+    private static final String DELETEBOOKADMIN_SERVLET = "DeleteBookAdminServlet";
+    private static final String CREATEBOOK_PAGE = "createBookPage.jsp";
+    private static final String CREATEBOOK_SERVLET = "CreateBookServlet";
+    private static final String CREATEDISCOUNT_PAGE = "createDiscountPage.jsp";
+    private static final String CREATEDISCOUNT_SERVLET = "CreateDiscountServlet";
+    private static final String CHECKOUT_SERVLET = "CheckoutServlet";
+    private static final String CHECKOUTPAYPAL_SERVLET = "CheckoutPaypalServlet";
+    private static final String EXECUTEPAYMENT_SERVLET = "ExecutePaymentServlet";
+    private static final String VIEWHISTORY_PAGE = "viewHistory.jsp";
+    private static final String VIEWHISTORY_SERVLET = "ViewHistoryServlet";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,8 +60,7 @@ public class DispatchServlet extends HttpServlet {
         String url = HOME_PAGE;
         try {
             String button = request.getParameter("btnAction");
-            
-            
+
             if (button == null) {
                 url = LOAD_SERVLET;
             } else if (button.equals("")) {
@@ -67,6 +81,34 @@ public class DispatchServlet extends HttpServlet {
                 url = VIEWCART_PAGE;
             } else if (button.equals("AddToCart")) {
                 url = ADDTOCART_SERVLET;
+            } else if (button.equals("CheckDiscountCode")) {
+                url = CHECKDISCOUNT_SERVLET;
+            } else if (button.equals("UpdateBookInCart")) {
+                url = UPDATEBOOKINCART_SERVLET;
+            } else if (button.equals("DeleteBookInCart")) {
+                url = DELETEBOOKINCART_SERVLET;
+            } else if (button.equals("UpdateBookAdmin")) {
+                url = UPDATEBOOKADMIN_SERVLET;
+            } else if (button.equals("DeleteBookAdmin")) {
+                url = DELETEBOOKADMIN_SERVLET;
+            } else if (button.equals("CreateBookPage")) {
+                url = CREATEBOOK_PAGE;
+            } else if (button.equals("CreateBook")) {
+                url = CREATEBOOK_SERVLET;
+            } else if (button.equals("CreateDiscountPage")) {
+                url = CREATEDISCOUNT_PAGE;
+            } else if (button.equals("CreateDiscount")) {
+                url = CREATEDISCOUNT_SERVLET;
+            } else if (button.equals("Checkout")) {
+                url = CHECKOUT_SERVLET;
+            } else if (button.equals("CheckoutPaypal")) {
+                url = CHECKOUTPAYPAL_SERVLET;
+            } else if (button.equals("Pay Now")) {
+                url = EXECUTEPAYMENT_SERVLET;
+            } else if (button.equals("ViewHistoryPage")) {
+                url = VIEWHISTORY_PAGE;
+            } else if (button.equals("GetHistory")) {
+                url = VIEWHISTORY_SERVLET;
             } else if (button.equals("Logout")) {
                 url = LOGOUT_SERVLET;
             }

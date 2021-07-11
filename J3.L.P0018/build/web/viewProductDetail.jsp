@@ -71,10 +71,9 @@
                     <c:if test="${empty sessionScope.USER}">
                         <form class="d-flex" action="DispatchServlet">
                             <button class="btn" type="submit" name="btnAction" value="LoginPage" >Login</button>
-                            <button class="btn btn-outline-dark" type="submit">
+                            <button class="btn btn-outline-dark" type="submit" name="btnAction" value="ViewCartPage">
                                 <i class="bi-cart-fill me-1"></i>
                                 Cart
-                                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                             </button>
                         </form>
                     </c:if>
@@ -93,10 +92,9 @@
                             </button>
 
 
-                            <button class="btn btn-outline-dark" type="submit">
+                            <button class="btn btn-outline-dark" type="submit" name="btnAction" value="ViewCartPage">
                                 <i class="bi-cart-fill me-1"></i>
                                 Cart
-                                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
                             </button>
                         </form>
 

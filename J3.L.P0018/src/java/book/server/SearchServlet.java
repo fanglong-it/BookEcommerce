@@ -7,6 +7,7 @@ package book.server;
 
 import book.driver.BookDAO;
 import book.driver.BookDTO;
+import book.driver.UserDTO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -44,17 +45,28 @@ public class SearchServlet extends HttpServlet {
             List<BookDTO> list = null;
             String searchValue = request.getParameter("searchValue");
             String option = request.getParameter("Category");
-            
-           
-            if (option.equals("All")) {
-                list = dao.getAllBook();
-            }else if(option.equals("Name")){
-                list = dao.getBookByName(searchValue);
-            }else if(option.equals("Price")){
-                list = dao.getBookByPrice(Float.parseFloat(searchValue));
+
+            UserDTO user = (UserDTO) session.getAttribute("USER");
+            if (user == null) {
+                if (option.equals("Name")) {
+                    list = dao.getBookByName(searchValue);
+                } else if (option.equals("Price")) {
+                    list = dao.getBookByPrice(Float.parseFloat(searchValue));
+                }
+            } else if (user.getRole().equals("AD")) {
+                if (option.equals("Name")) {
+                    list = dao.getBookByNameForAdmin(searchValue);
+                } else if (option.equals("Price")) {
+                    list = dao.getBookByPriceForAdmin(Float.parseFloat(searchValue));
+                }
+            } else {
+                if (option.equals("Name")) {
+                    list = dao.getBookByName(searchValue);
+                } else if (option.equals("Price")) {
+                    list = dao.getBookByPrice(Float.parseFloat(searchValue));
+                }
             }
 
-            
             session.setAttribute("LISTBOOK", list);
         } catch (Exception e) {
             log("Error At Search Servlet: " + e.toString());

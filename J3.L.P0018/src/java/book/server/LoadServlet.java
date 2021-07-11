@@ -9,6 +9,8 @@ import book.driver.BookDAO;
 import book.driver.BookDTO;
 import book.driver.CategoryDAO;
 import book.driver.CategoryDTO;
+import book.driver.TotalDTO;
+import book.driver.UserDTO;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -45,18 +47,40 @@ public class LoadServlet extends HttpServlet {
             CategoryDAO cateDao = new CategoryDAO();
             BookDAO bookDao = new BookDAO();
             HttpSession session = request.getSession();
+            
+            //LoadCategory
             List<CategoryDTO> listCate = cateDao.getAllCategory();
             session.setAttribute("CATE", listCate);
-            List<BookDTO> listBook = bookDao.getAllBook();
+            
+            //LoadListBook
+            List<BookDTO> listBook = null;
+            UserDTO user = (UserDTO) session.getAttribute("USER");
+            if(user == null){
+            listBook = bookDao.getAllBook();
+            }else if(user.getRole().equals("AD")){
+                listBook = bookDao.getAllBookForAdmin();
+            }else{
+                listBook = bookDao.getAllBook();
+            }
             session.setAttribute("LISTBOOK", listBook);
+
+            //Set Load for Book in cart
             List<BookDTO> bookCart = null;
             if (session.getAttribute("BOOKCART") == null) {
                 bookCart = new ArrayList<>();
             } else {
                 bookCart = (List<BookDTO>) session.getAttribute("BOOKCART");
             }
-           session.setAttribute("BOOKCART", bookCart);
+            session.setAttribute("BOOKCART", bookCart);
 
+            //Set Load for total price of book
+            TotalDTO totalDTO = null;
+            if (session.getAttribute("TOTAL") == null) {
+                
+            } else {
+                totalDTO = (TotalDTO) session.getAttribute("TOTAL");
+            }
+            session.setAttribute("TOTAL", totalDTO);
 
         } catch (Exception e) {
             log("Error at load Servlet: " + e.toString());

@@ -46,6 +46,17 @@
                             </ul>
                         </li>
                     </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 ">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Create</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="DispatchServlet?btnAction=CreateBookPage">Create Book</a></li>
+                                <li><a class="dropdown-item" href="DispatchServlet?btnAction=CreateDiscountPage">Create Discount</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    <a class="navbar me-auto btn btn-outline-dark" href="DispatchServlet?btnAction=ViewHistoryPage">View History</a>
 
                     <%-->Search<--%>
                     <form action="DispatchServlet" class="d-flex me-auto" >
@@ -76,17 +87,17 @@
                         <c:if test="${sessionScope.USER.role eq 'US'}">
                             <c:redirect url="index.jsp"/>
                         </c:if>
-                        
+
                         <form class="d-flex" action="DispatchServlet">
                             <button class="btn" type="submit" name="btnAction" value="Profile" >
-                            Welcome,    ${sessionScope.USER.name}
+                                Welcome,    ${sessionScope.USER.name}
                             </button>
-                            
+
                             <button class="btn btn-outline-dark" style="background: tomato" type="submit" name="btnAction" value="Logout">
                                 Logout
                             </button>
                         </form>
-                        
+
                     </c:if>
                 </div>
             </div>
@@ -135,7 +146,6 @@
                                             <button class="btn btn-outline-dark mt-auto" type="Submit" name="btnAction" value="ViewDetail">
                                                 View detail
                                             </button>
-                                            <a class="btn btn-outline-dark mt-auto" href="#">Add to cart</a>
                                         </form>
 
                                     </div>
@@ -191,6 +201,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
         Core theme JS
         <!--        <script src="js/scripts.js"></script>-->
-        
+
     </body>
 </html>

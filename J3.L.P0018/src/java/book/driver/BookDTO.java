@@ -49,6 +49,17 @@ public class BookDTO implements Serializable{
         this.discription = discription;
         this.bookQuantity = bookQuantity;
     }
+    
+    public BookDTO( String title, float price, String author, String categoryId,
+             String photoCode, String discription, int bookQuantity) {
+        this.title = title;
+        this.price = price;
+        this.author = author;
+        this.categoryId = categoryId;
+        this.photoCode = photoCode;
+        this.discription = discription;
+        this.bookQuantity = bookQuantity;
+    }
 
     public String getDiscription() {
         return discription;

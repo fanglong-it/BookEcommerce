@@ -57,6 +57,7 @@ public class ViewDetailServlet extends HttpServlet {
         } catch (Exception e) {
             log("Error at ViewDetailServlet: " + e.toString());
         } finally {
+//            request.getRequestDispatcher(url).forward(request, response);
             response.sendRedirect(url);
         }
     }

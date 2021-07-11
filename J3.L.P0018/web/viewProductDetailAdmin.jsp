@@ -54,6 +54,17 @@
                             </ul>
                         </li>
                     </ul>
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4 ">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Create</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="DispatchServlet?btnAction=CreateBookPage">Create Book</a></li>
+                                <li><a class="dropdown-item" href="DispatchServlet?btnAction=CreateDiscountPage">Create Discount</a></li>
+
+                            </ul>
+                        </li>
+                    </ul>
+                    <a class="navbar me-auto btn btn-outline-dark" href="DispatchServlet?btnAction=ViewHistoryPage">View History</a>
 
                     <%-->Search button<--%>
                     <form action="DispatchServlet" class="d-flex me-auto" >
@@ -82,28 +93,22 @@
                         </form>
                     </c:if>
                     <c:if test="${not empty sessionScope.USER}">
-                        
+
                         <c:if test="${sessionScope.USER.role eq 'US'}">
                             <c:redirect url="index.jsp"/>
                         </c:if>
-                        
+
                         <form class="d-flex" action="DispatchServlet">
                             <button class="btn" type="submit" name="btnAction" value="Profile" >
-                            Welcome,    ${sessionScope.USER.name}
+                                Welcome,    ${sessionScope.USER.name}
                             </button>
-                            
+
                             <button class="btn btn-outline-dark" style="background: tomato" type="submit" name="btnAction" value="Logout">
                                 Logout
                             </button>
-                            
-                            
-                            <button class="btn btn-outline-dark" type="submit">
-                                <i class="bi-cart-fill me-1"></i>
-                                Cart
-                                <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-                            </button>
+
                         </form>
-                        
+
                     </c:if>
                 </div>
             </div>
@@ -120,84 +125,137 @@
             </div>
         </header>
 
+        <form action="DispatchServlet">
+            <section class="py-5">
+                <div class="container px-4 px-lg-5 mt-5">
+                    <%-- %>Start of product <--%>
+                    <c:if test="${not empty sessionScope.BOOKDETAIL}">
+                        <div class="container">
+                            <hr>
+                            <div class="card">
+                                <div class="row">
+                                    <aside class="col-sm-5 border-right">
+                                        <article class="gallery-wrap"> 
+                                            <div class="img-big-wrap">
+                                                <div> 
+                                                    <img src="${sessionScope.BOOKDETAIL.photoCode}">
+                                                </div>
+                                            </div> <!-- slider-product.// -->
+                                            <!-- slider-nav.// -->
+                                        </article> <!-- gallery-wrap .end// -->
+                                    </aside>
+                                    <form action="DispatchServlet">
+                                        <aside class="col-sm-7">
+                                            <article class="card-body p-5">
 
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
+                                                <h3 class="title mb-3"><input type="text" name="bookTitle" value="${sessionScope.BOOKDETAIL.title}" /></h3>
+
+                                                <p class="price-detail-wrap"> 
+                                                    <span class="price h3 text-warning"> 
+                                                        <span class="currency">VND đ</span><span class="num"><input type="text" name="bookPrice" value="${sessionScope.BOOKDETAIL.price}" /></span>
+
+                                                    </span> 
+                                                    <span>/per</span> 
+                                                </p> <!-- price-detail-wrap .// -->
+                                                <dl class="item-property">
+                                                    <dt>Description</dt>
+                                                    <dd><p>${sessionScope.BOOKDETAIL.discription} </p></dd>
+                                                    <input type="text" style="width: 100% ;height: auto" name="bookDescription" value="${sessionScope.BOOKDETAIL.discription}" /> 
+                                                </dl>
+                                                <dl class="param param-feature">
+                                                    <dt>Author</dt>
+                                                    <dd><input type="text" name="bookAuthor" value="${sessionScope.BOOKDETAIL.author}" /></dd>
+
+                                                </dl>  <!-- item-property-hor .// -->
+                                                <dl class="param param-feature">
+                                                    <dt>Category</dt>
+                                                    <dd>${sessionScope.BOOKDETAIL.categoryId}</dd>
+                                                    <select name="bookCategory">
+                                                        
+                                                        
+                                                        <c:forEach var="category" items="${sessionScope.CATE}">
+                                                            <c:if test="${sessionScope.BOOKDETAIL.categoryId eq category.categoryName}">
+                                                               <option value="${category.categoryId}" selected="">${category.categoryName}</option> 
+                                                            </c:if>
+                                                            <option value="${category.categoryId}">${category.categoryName}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </dl>  <!-- item-property-hor .// -->
+                                                <dl class="param param-feature">
+                                                    <dt>Delivery</dt>
+                                                    <dd>Việt Nam</dd>
+                                                </dl>  <!-- item-property-hor .// -->
+
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <dl class="param param-inline">
+                                                            <dt>Quantity: </dt>
+                                                            <dd>
+                                                                <input type="text" name="bookQuantity" value="${sessionScope.BOOKDETAIL.bookQuantity}" />
+                                                            </dd>
+                                                        </dl>  <!-- item-property .// -->
+                                                    </div> <!-- col.// -->
+
+                                                </div> <!-- row.// -->
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <dl class="param param-inline">
+                                                            <dt>Status </dt>
+                                                            <dd>
+                                                                <input type="text" name="bookStatus" value="${sessionScope.BOOKDETAIL.status}" />
+                                                            </dd>
+                                                        </dl>  <!-- item-property .// -->
+                                                    </div> <!-- col.// -->
+
+                                                </div>
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <dl class="param param-inline">
+                                                            <dt>Date Import: </dt>
+                                                            <dd>
+                                                                <input type="text" name="dateImport" value="${sessionScope.BOOKDETAIL.importDate}" />
+                                                            </dd>
+                                                        </dl>  <!-- item-property .// -->
+                                                    </div> <!-- col.// -->
+
+                                                </div><!-- row.// -->
+                                                <hr>
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <dl class="param param-inline">
+                                                            <dt>Photo Code: </dt>
+                                                            <dd>
+                                                                <input type="text" name="photoCode" value="${sessionScope.BOOKDETAIL.photoCode}" />
+                                                            </dd>
+                                                        </dl>  <!-- item-property .// -->
+                                                    </div> <!-- col.// -->
+
+                                                </div><!-- row.// -->
+                                                <hr>
+                                                <input type="hidden" name="bookId" value="${sessionScope.BOOKDETAIL.bookID}" />
+                                                <button class="btn btn-lg btn-outline-success text-uppercase" type="submit" name="btnAction" value="UpdateBookAdmin">Update</button>
+                                                <button class="btn btn-lg btn-outline-danger text-uppercase" type="submit" name="btnAction" value="DeleteBookAdmin">Delete</button>
+
+                                            </article> <!-- card-body.// -->
+                                        </aside>
+                                    </form>
+                                    <!-- col.// -->
+                                </div> <!-- row.// -->
+                            </div> <!-- card.// -->
+
+                        </div>
+                    </c:if>
 
 
-                <%-- %>Start of product <--%>
-                <c:if test="${not empty sessionScope.BOOKDETAIL}">
-                    <div class="container">
-                        <hr>
-                        <div class="card">
-                            <div class="row">
-                                <aside class="col-sm-5 border-right">
-                                    <article class="gallery-wrap"> 
-                                        <div class="img-big-wrap">
-                                            <div> 
-                                                <img src="${sessionScope.BOOKDETAIL.photoCode}">
-                                            </div>
-                                        </div> <!-- slider-product.// -->
-                                        <!-- slider-nav.// -->
-                                    </article> <!-- gallery-wrap .end// -->
-                                </aside>
-                                <aside class="col-sm-7">
-                                    <article class="card-body p-5">
-                                        <h3 class="title mb-3">${sessionScope.BOOKDETAIL.title}</h3>
+                    <%-- %>end of product <--%>
 
-                                        <p class="price-detail-wrap"> 
-                                            <span class="price h3 text-warning"> 
-                                                <span class="currency">VND đ</span><span class="num">${sessionScope.BOOKDETAIL.price}</span>
-                                            </span> 
-                                            <span>/per</span> 
-                                        </p> <!-- price-detail-wrap .// -->
-                                        <dl class="item-property">
-                                            <dt>Description</dt>
-                                            <dd><p>${sessionScope.BOOKDETAIL.discription} </p></dd>
-                                        </dl>
-                                        <dl class="param param-feature">
-                                            <dt>Author#</dt>
-                                            <dd>${sessionScope.BOOKDETAIL.author}</dd>
-                                        </dl>  <!-- item-property-hor .// -->
-                                        <dl class="param param-feature">
-                                            <dt>Category</dt>
-                                            <dd>${sessionScope.BOOKDETAIL.categoryId}</dd>
-                                        </dl>  <!-- item-property-hor .// -->
-                                        <dl class="param param-feature">
-                                            <dt>Delivery</dt>
-                                            <dd>Việt Nam</dd>
-                                        </dl>  <!-- item-property-hor .// -->
+                </div>
 
-                                        <hr>
-                                        <div class="row">
-                                            <div class="col-sm-5">
-                                                <dl class="param param-inline">
-                                                    <dt>Quantity: </dt>
-                                                    <dd>
-                                                        <select class="form-control form-control-sm" style="width:70px;">
-                                                            <option> 1 </option>
-                                                            <option> 2 </option>
-                                                            <option> 3 </option>
-                                                        </select>
-                                                    </dd>
-                                                </dl>  <!-- item-property .// -->
-                                            </div> <!-- col.// -->
 
-                                        </div> <!-- row.// -->
-                                        <hr>
-                                        <a href="#" class="btn btn-lg btn-outline-success text-uppercase"> Update </a>
-                                        <a href="#" class="btn btn-lg btn-outline-danger text-uppercase"> <i class="fas fa-shopping-cart"></i> Delete </a>
-                                    </article> <!-- card-body.// -->
-                                </aside> <!-- col.// -->
-                            </div> <!-- row.// -->
-                        </div> <!-- card.// -->
-                    </div>
-                </c:if>
-                <%-- %>end of product <--%>
-
-            </div>
-
-        </section>
+            </section>
+        </form>
 
 
         <footer class="py-5 bg-dark">

@@ -7,6 +7,7 @@ package book.server;
 
 import book.driver.BookDAO;
 import book.driver.BookDTO;
+import book.driver.UserDTO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -22,7 +23,9 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet(name = "SearchCateServlet", urlPatterns = {"/SearchCateServlet"})
 public class SearchCateServlet extends HttpServlet {
+
     private static final String HOME_PAGE = "index.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -40,13 +43,22 @@ public class SearchCateServlet extends HttpServlet {
             String cateId = request.getParameter("CateId");
             BookDAO dao = new BookDAO();
             HttpSession session = request.getSession();
-            List<BookDTO> list = null;
-            list = dao.getBookByCate(cateId);
-            session.setAttribute("LISTBOOK", list);
             
+            //Load Book With Cate
+            List<BookDTO> list = null;
+            UserDTO user = (UserDTO) session.getAttribute("USER");
+            if (user == null) {
+                list = dao.getBookByCate(cateId);
+            }else if(user.getRole().equals("AD")){
+                list = dao.getBookByCateForAdmin(cateId);
+            }else{
+                list = dao.getBookByCate(cateId);
+            }
+            session.setAttribute("LISTBOOK", list);
+
         } catch (Exception e) {
             log("Error at SearchCateServlet: " + e.toString());
-        }finally{
+        } finally {
             response.sendRedirect(url);
         }
     }

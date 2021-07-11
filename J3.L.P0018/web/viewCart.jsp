@@ -122,47 +122,54 @@
 
                             <div class="content">
                                 <div class="row">
-                                    <div class="col-md-12 col-lg-8">
+                                    <div class="col-md-12 col-lg-12">
                                         <div class="items">
 
 
                                             <c:if test="${ not empty sessionScope.BOOKCART}">
                                                 <%-->Start of Product in Cart<--%>
                                                 <c:forEach var="c" items="${sessionScope.BOOKCART}">
-                                                <div class="product">
-                                                    <div class="row">
-                                                        <div class="col-md-3">
-                                                            <img class="img-fluid mx-auto d-block image" src="${c.getPhotoCode()}" alt="...">
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                            <div class="info">
-                                                                <div class="row">
-                                                                    <div class="col-md-5 product-name">
-                                                                        <div class="product-name">
-                                                                            <a href="#">${c.title}</a>
-                                                                            <div class="product-info">
-                                                                                <div>Price: <span class="value">${c.price}</span></div>
-                                                                                
+                                                    <div class="product">
+                                                        <div class="row">
+                                                            <div class="col-md-3">
+                                                                <img class="img-fluid mx-auto d-block image" src="${c.getPhotoCode()}" alt="...">
+                                                            </div>
+                                                            <div class="col-md-8">
+                                                                <div class="info">
+                                                                    <form action="DispatchServlet">
+                                                                        <div class="row">
+                                                                            <div class="col-md-4 product-name">
+                                                                                <div class="product-name">
+                                                                                    <a href="DispatchServlet?btnAction=ViewDetail&BookId=${c.bookID}">${c.title}</a>
+                                                                                    <div class="product-info">
+                                                                                        <div>Price: <span class="value">${c.price}</span></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="col-md-3 quantity">
+                                                                                <label for="quantity">Quantity:</label>
+                                                                                <input id="quantity" type="number" name="quantity" value ="${c.bookQuantity}" class="form-control quantity-input">
+                                                                            </div>
+                                                                            <div class="col-md-5 row">
+                                                                                <input type="hidden" name="BookId" value="${c.bookID}" />
+                                                                                <button class="col-1 col-lg-6 btn btn-outline-primary" name="btnAction" value="UpdateBookInCart">Update</button>
+                                                                                <button class="col-2 col-lg-6 btn btn-outline-danger" name="btnAction" value="DeleteBookInCart">Delete</button>
                                                                             </div>
                                                                         </div>
-                                                                    </div>
-                                                                    <div class="col-md-4 quantity">
-                                                                        <label for="quantity">Quantity:</label>
-                                                                        <input id="quantity" type="number" value ="${c.bookQuantity}" class="form-control quantity-input">
-                                                                    </div>
-                                                                    <div class="col-md-3 price">
-                                                                        <span>test</span>
-                                                                    </div>
+                                                                    </form>
+
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <%-->End of Product in Cart<--%>
+                                                    <%-->End of Product in Cart<--%>
                                                 </c:forEach>
                                             </c:if>
                                             <c:if test="${empty sessionScope.BOOKCART}">
                                                 Nothing in cart
+                                            </c:if>
+                                            <c:if test="${not empty sessionScope.ORDERSUCCESS}">
+                                                <p style="color: green"> ${sessionScope.ORDERSUCCESS} </p>
                                             </c:if>
 
 
@@ -171,19 +178,58 @@
 
 
                                     <%-->Summary for Product<--%>
-                                    <div class="col-md-12 col-lg-4">
+                                    <div class="col-md-12 col-lg-12">
                                         <div class="summary">
-                                            <h3>Summary</h3>
-                                            <div class="summary-item"><span class="text">Subtotal</span><span class="price">$360</span></div>
-                                            <div class="summary-item"><span class="text">Discount</span><span class="price">$0</span></div>
-                                            <div class="summary-item"><span class="text">Shipping</span><span class="price">$0</span></div>
-                                            <div class="summary-item"><span class="text">Total</span><span class="price">$360</span></div>
-                                            <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                                            <c:if test="${not empty sessionScope.TOTAL}">
+                                                <form action="DispatchServlet">
+                                                    <h3>Summary</h3>
+                                                    <div class="summary-item"><span class="text">Subtotal</span><span class="price">${sessionScope.TOTAL.subTotal}</span></div>
+                                                    <div class="summary-item"><span class="text">Discount</span><span class="price">${sessionScope.TOTAL.discount}</span></div>
+                                                    <div class="summary-item"><span class="text">Shipping</span><span class="price">${sessionScope.TOTAL.shipping}</span></div>
+                                                    <div class="summary-item"><span class="text">Total</span><span class="price">${sessionScope.TOTAL.total}</span></div>
+                                                    <div class="summary-item">
+
+                                                        <span class="text">Discount Code: </span>
+                                                        <span class="text">
+                                                            <input type="hidden" name="username" value="${sessionScope.USER.username}" />
+                                                            <c:if test="${sessionScope.TOTAL.subTotal ne '0.0'}">
+
+                                                                <input class="btn btn-outline-dark mb-0" type="text" name="DiscountCode" value="${param.DiscountCode}" />
+                                                                <button class="btn btn-outline-dark mb-3" type="Submit" name="btnAction" value="CheckDiscountCode">Check</button>
+                                                            </c:if>
+                                                        </span>
+                                                    </div>
+                                                    <c:if test="${not empty requestScope.ERROR_DISCOUNT}">
+                                                    <p style="color: red">${requestScope.ERROR_DISCOUNT}</p>
+                                                    </c:if>
+
+                                                    <c:if test="${not empty requestScope.ERROR_CHECKOUT}">
+                                                        <p style="color: red">${requestScope.ERROR_CHECKOUT}</p>
+                                                    </c:if>
+                                                    <c:if test="${not empty sessionScope.ERROR_CHECKOUT}">
+                                                        <p style="color: red">${sessionScope.ERROR_CHECKOUT}</p>
+                                                    </c:if>
+                                                        
+                                                    <c:if test="${sessionScope.TOTAL.subTotal ne '0.0'}">
+                                                        <button type="submit" name="btnAction" value="Checkout" class="btn btn-primary btn-lg btn-block">Checkout</button>
+                                                        <button type="submit" name="btnAction" value="CheckoutPaypal" class="btn btn-outline-dark btn-lg btn-block">Paypal</button>
+                                                    </c:if>
+
+                                                </form>
+                                            </c:if>
+
+                                            <c:if test="${empty sessionScope.TOTAL}">
+                                                <h3>Summary</h3>
+                                                <div class="summary-item"><span class="text">Subtotal</span><span class="price">$0</span></div>
+                                                <div class="summary-item"><span class="text">Discount</span><span class="price">$0</span></div>
+                                                <div class="summary-item"><span class="text">Shipping</span><span class="price">$0</span></div>
+                                                <div class="summary-item"><span class="text">Total</span><span class="price">$0</span></div>
+                                            </c:if>
+
                                         </div>
-                                    </div>
-                                </div> 
+                                    </div> 
+                                </div>
                             </div>
-                        </div>
                     </section>
                 </main>
             </div>

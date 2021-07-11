@@ -6,7 +6,6 @@
 package book.server;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +38,6 @@ private static final String HOME_PAGE = "index.jsp";
             if(session!= null){
                 session.invalidate();
             }
-            
         } catch (Exception e) {
             log("Error at logout Servlet: " +e.toString());
         }finally{

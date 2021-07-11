@@ -4,25 +4,54 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/BookDTO.java</file>
-            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/LoadServlet.java</file>
-            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/UserDTO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/UpdateBookAdminServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/createBookPage.jsp</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/DeleteBookAdminServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/AddToCartServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/OrderDAO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/LoginServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/UpdateBookInCartServlet.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/viewCart.jsp</file>
-            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/UserDAO.java</file>
-            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/register.jsp</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/CategoryDAO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/CreateDiscountServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/receipt.jsp</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/viewProductDetailAdmin.jsp</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/ExecutePaymentServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/ViewHistoryServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/review.jsp</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/LoadServlet.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/login.jsp</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/viewProductDetail.jsp</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/TotalDTO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/CheckoutPaypalServlet.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/BookDAO.java</file>
-            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/viewProductDetailAdmin.jsp</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/ReviewPaymentServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/CreateBookServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/OrderDetail.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/CheckoutServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/DeleteBookInCartServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/index.jsp</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/DiscountDTO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/util/PaymentServices.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/SearchServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/CheckDiscountCodeServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/SearchCateServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/UserDTO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/UserDAO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/register.jsp</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/CategoryDTO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/UseDiscountDAO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/OrderDTO.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/DiscountDAO.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/util/BookUtil.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/createDiscountPage.jsp</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/indexForAdmin.jsp</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/LogoutServlet.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/DispatchServlet.java</file>
-            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/index.jsp</file>
-            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/AddToCartServlet.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/ViewDetailServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/driver/UseDiscountDTO.java</file>
             <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/RegisterServlet.java</file>
-            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/src/java/book/server/LoginServlet.java</file>
+            <file>file:/D:/Source%20Code%20SE%201/Lab%20Web/J3.L.P0018/web/viewHistory.jsp</file>
         </group>
     </open-files>
 </project-private>

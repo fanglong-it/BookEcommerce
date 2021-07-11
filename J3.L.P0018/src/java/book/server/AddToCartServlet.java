@@ -7,6 +7,8 @@ package book.server;
 
 import book.driver.BookDAO;
 import book.driver.BookDTO;
+import book.driver.TotalDTO;
+import book.driver.UserDTO;
 import book.util.BookUtil;
 import java.io.IOException;
 import java.util.List;
@@ -25,6 +27,7 @@ import javax.servlet.http.HttpSession;
 public class AddToCartServlet extends HttpServlet {
 
     private static final String VIEWDETAIL_PAGE = "viewProductDetail.jsp";
+    private static final String LOGIN_PAGE = "login.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -40,30 +43,34 @@ public class AddToCartServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = VIEWDETAIL_PAGE;
         try {
+
+            BookDAO bookDao = new BookDAO();
+            BookUtil util = new BookUtil();
+            HttpSession session = request.getSession();
             String bookId = request.getParameter("BookId");
             String quantity = request.getParameter("Quantity");
-            HttpSession session = request.getSession();
-            BookUtil util = new BookUtil();
             List<BookDTO> listBook = (List<BookDTO>) session.getAttribute("BOOKCART");
-            BookDAO bookDao = new BookDAO();
             BookDTO book = bookDao.getBook(bookId);
             book.setBookQuantity(Integer.parseInt(quantity));
-
-            if (listBook.isEmpty()) {
-                listBook.add(book);
+            UserDTO user = (UserDTO) session.getAttribute("USER");
+            if (user == null) {
+                url = LOGIN_PAGE;
             } else {
-
-                if(util.checkExistInList(listBook, bookId)){
-                    int oldQuantity = util.getBookQuantityInList(listBook, bookId);
-                    int newQuantity = Integer.parseInt(quantity);
-                    int totalQuantity = oldQuantity + newQuantity;
-//                    book.setBookQuantity(totalQuantity);
-                    util.updateBookInList(listBook, bookId, totalQuantity);
-                }else{
+                if (listBook.isEmpty()) {
                     listBook.add(book);
+                } else {
+                    if (util.checkExistInList(listBook, bookId)) {
+                        util.updateBookInList(listBook, bookId, util.getBookQuantityInList(listBook, bookId) + Integer.parseInt(quantity));
+                    } else {
+                        listBook.add(book);
+                    }
                 }
             }
+            float subTotal = util.getBookTotalInList(listBook);
+            TotalDTO total = new TotalDTO(subTotal, 1, 0, util.calculatorTotal(subTotal, 1));
+            session.setAttribute("TOTAL", total);
             session.setAttribute("BOOKCART", listBook);
+
         } catch (Exception e) {
             log("Error at AddToCartServlet: " + e.toString());
         } finally {

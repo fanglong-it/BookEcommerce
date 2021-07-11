@@ -8,7 +8,6 @@ package book.server;
 import book.driver.UserDAO;
 import book.driver.UserDTO;
 import java.io.IOException;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

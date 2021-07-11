@@ -35,7 +35,6 @@ public class UserDAO implements Serializable {
                 pst.setString(2, password);
                 rs = pst.executeQuery();
                 if (rs.next()) {
-                    String userName = rs.getString("Username");
                     String passWord = "*******";
                     String name = rs.getString("Name");
                     String role = rs.getString("roleId");
